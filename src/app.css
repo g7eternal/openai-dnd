@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Scroller */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.amber.300") theme("colors.neutral.100");
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    width: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: transparent;
+  }
+  *::-webkit-scrollbar-track:hover {
+    background-color: transparent;
+  }
+  *::-webkit-scrollbar-track:active {
+    background-color: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    border: 1px solid theme("colors.amber.800");
+    background-color: theme("colors.amber.300");
+    transition: background-color 2s;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: theme("colors.amber.400");
+  }
+  *::-webkit-scrollbar-thumb:active {
+    background-color: theme("colors.amber.400");
+    border-color: theme("colors.orange.400");
+  }
+}
+
+@layer components {
+  /* auto darkmode for "prose" typography subclass */
+  .prose {
+    @apply dark:prose-invert;
+  }
+
+  /* all labels are meant to be clickable */
+  label {
+    @apply cursor-pointer;
+    vertical-align: baseline;
+  }
+
+  /* style for all inputs */
+  textarea,
+  input[type="text"],
+  input[type="password"] {
+    @apply rounded-lg border-2  text-black bg-white;
+    @apply border-gray-400 ring-amber-400  outline-amber-400;
+  }
+  textarea:invalid,
+  input[type="text"]:invalid,
+  input[type="password"]:invalid {
+    @apply bg-red-100 outline outline-1 outline-red-500;
+  }
+  textarea:disabled,
+  input[type="text"]:disabled,
+  input[type="password"]:disabled {
+    @apply bg-neutral-300 text-neutral-500;
+  }
+  textarea:focus {
+    @apply border-gray-400 shadow-amber-400 ring-amber-400;
+  }
+
+  /* Custom checkbox - toggler */
+  .toggler {
+    position: relative;
+    cursor: pointer;
+    appearance: none;
+    width: 2rem;
+    height: 1rem;
+    border-radius: 1rem;
+    background: transparent;
+    color: transparent;
+    border: 2px solid theme("colors.gray.400");
+    outline: none;
+    transition: 0.3s;
+  }
+  .toggler::before {
+    content: "";
+    position: absolute;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 50%;
+    background: theme("colors.gray.400");
+    top: 0rem;
+    left: 0;
+    transition: 0.3s ease-in-out;
+  }
+  .toggler:checked::before {
+    transform: translateX(1rem);
+    background: theme("colors.amber.400");
+  }
+  .toggler:checked {
+    background: transparent;
+    color: transparent;
+    border-color: theme("colors.amber.600");
+  }
+  .toggler:focus,
+  .toggler:hover,
+  .toggler:active {
+    border-width: 2px;
+    border-color: theme("colors.amber.800") !important;
+    box-shadow: 0px 0px 4px theme("colors.amber.600");
+  }
+}
+
+@layer utilities {
+  /* font sizings */
+  .text-xsm {
+    font-size: 0.75rem;
+    line-height: 1.15rem;
+  }
+}
+
+/* Tippy.js */
+.tippy-box[data-theme~="custom"] {
+  @apply py-1 px-2 rounded bg-gray-200 text-gray-800 border border-gray-500;
+}
+.tippy-box[data-theme~="custom"] > .tippy-svg-arrow {
+  fill: theme("colors.gray.500");
+}
