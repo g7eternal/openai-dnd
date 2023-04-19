@@ -32,26 +32,26 @@
 </script>
 
 <dialog bind:this={dialogRef} in:fly={{ duration: 200, y: 50 }}>
-  <header>
-    <h1>
-      <slot name="header" />
-    </h1>
-    <form method="dialog">
+  <form method="dialog">
+    <header>
+      <h1>
+        <slot name="header" />
+      </h1>
+
       <button class="closer" use:tippy={closerTippyConfig}>
         <img src="svg/close-button.svg" alt="✖️" width="24" height="24" />
       </button>
-    </form>
-  </header>
+    </header>
 
-  <div class="content">
-    <slot name="content" />
-  </div>
+    <div class="content">
+      <slot name="content" />
+    </div>
+  </form>
 </dialog>
 
 <style lang="postcss">
   dialog {
-    @apply w-full h-full md:w-1/2 md:h-3/4 md:rounded-xl border-2 border-amber-500;
-    @apply p-4 flex flex-col flex-nowrap;
+    @apply p-4 w-full h-full md:w-1/2 md:h-3/4 md:rounded-xl border-2 border-amber-500;
     @apply bg-zinc-100 text-zinc-800;
     @apply dark:bg-zinc-800 dark:text-zinc-100;
   }
@@ -59,6 +59,10 @@
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(2px);
     cursor: not-allowed; /* this looks goofy */
+  }
+
+  form {
+    @apply h-full w-full flex flex-col flex-nowrap;
   }
 
   header {
