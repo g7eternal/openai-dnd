@@ -19,7 +19,7 @@
 
 <style lang="postcss">
   .prose {
-    @apply h-full w-full flex flex-col flex-nowrap;
+    @apply h-full w-full max-w-none flex flex-col flex-nowrap;
   }
   .prose p {
     @apply m-auto text-center;
