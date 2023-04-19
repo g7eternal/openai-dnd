@@ -7,7 +7,7 @@
   <div class="brand">
     <img src="favicon.png" alt="" />
     <h1>
-      <a href="/">GPT AutoAdventures</a>
+      <a href=".">GPT AutoAdventures</a>
     </h1>
   </div>
 
