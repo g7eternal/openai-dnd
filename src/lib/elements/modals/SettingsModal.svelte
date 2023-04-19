@@ -1,8 +1,9 @@
 <script>
-  import BaseDialog from "./BaseDialog.svelte";
+  import tippy from "$lib/utils/tippy.js";
   import { nullFunction } from "$lib/utils/consts.js";
   import { settings, toggleDarkMode } from "$lib/utils/settings.js";
   import currentAdventure from "$lib/utils/journey";
+  import BaseDialog from "./BaseDialog.svelte";
 
   export let callback = nullFunction;
 </script>
@@ -62,35 +63,57 @@
     <h2 class="text-lg font-bold">Other settings</h2>
 
     <div class="input-group input-row">
-      <input
-        id="option_darkMode"
-        type="checkbox"
-        class="toggler"
-        bind:checked={$settings.darkMode}
-        on:change={() => toggleDarkMode($settings.darkMode)}
-      />
-      <label for="option_darkMode">💡 Dark mode</label>
+      <span
+        use:tippy={{
+          placement: "bottom-start",
+          content: "Toggles color theme for this webpage",
+        }}
+      >
+        <input
+          id="option_darkMode"
+          type="checkbox"
+          class="toggler"
+          bind:checked={$settings.darkMode}
+          on:change={() => toggleDarkMode($settings.darkMode)}
+        />
+        <label for="option_darkMode">💡 Dark mode</label></span
+      >
     </div>
 
     <div class="input-group input-row">
-      <input
-        id="option_showChat"
-        type="checkbox"
-        class="toggler"
-        bind:checked={$settings.showChat}
-      />
-      <label for="option_showChat">📜 Show chat during journey</label>
+      <span
+        use:tippy={{
+          placement: "bottom-start",
+          content:
+            "Enables a Twitch embed with chat<br><small>Does not work on smaller screens</small>",
+        }}
+      >
+        <input
+          id="option_showChat"
+          type="checkbox"
+          class="toggler"
+          bind:checked={$settings.showChat}
+        />
+        <label for="option_showChat">📜 Show chat during journey</label>
+      </span>
       <i class="w-full ml-10 text-xsm sm:hidden">ℹ️ Option has no effect on small screens</i>
     </div>
 
     <div class="input-group input-row">
-      <input
-        id="option_ignoreLongMsg"
-        type="checkbox"
-        class="toggler"
-        bind:checked={$settings.ignoreLongMessages}
-      />
-      <label for="option_ignoreLongMsg">🪢 Ignore long messages</label>
+      <span
+        use:tippy={{
+          placement: "bottom-start",
+          content: "Longer chat messages will be filtered out before sending logs into GPT",
+        }}
+      >
+        <input
+          id="option_ignoreLongMsg"
+          type="checkbox"
+          class="toggler"
+          bind:checked={$settings.ignoreLongMessages}
+        />
+        <label for="option_ignoreLongMsg">🪢 Ignore long messages</label>
+      </span>
     </div>
   </div>
 </BaseDialog>
