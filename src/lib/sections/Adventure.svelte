@@ -1,4 +1,5 @@
 <script>
+  import { fly, scale } from "svelte/transition";
   import { settings } from "$lib/utils/settings.js";
   import currentAdventure from "$lib/utils/journey.js";
 
@@ -10,15 +11,15 @@
   import FirstPrompt from "../elements/conversation/FirstPrompt.svelte";
 </script>
 
-<div class="main">
+<div class="main" in:scale={{ duration: 500 }}>
   {#if $currentAdventure.ready}
     {#if $settings.showChat}
-      <aside>
+      <aside in:fly={{ duration: 100, x: -100 }}>
         <EmbedChatBlock />
         <!--<ChatBlock />-->
       </aside>
     {/if}
-    <section>
+    <section in:fly={{ duration: 100, y: 50 }}>
       <div class="content">
         {#if $currentAdventure.conversation.length > 0}
           <Conversation />
@@ -49,7 +50,7 @@
   }
 
   section {
-    @apply flex-1 h-full flex flex-col flex-nowrap;
+    @apply flex-1 mx-auto max-w-4xl h-full flex flex-col flex-nowrap;
   }
 
   .content {

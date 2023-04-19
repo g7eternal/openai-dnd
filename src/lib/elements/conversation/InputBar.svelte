@@ -52,7 +52,8 @@
         <strong>🤔💭 Thinking...</strong>
       </div>
     {:else}
-      <textarea bind:value={prompt} {placeholder} on:keypress={ctrlEnter} />
+      <!-- svelte-ignore a11y-autofocus -->
+      <textarea autofocus bind:value={prompt} {placeholder} on:keypress={ctrlEnter} />
 
       <div class="button-container">
         <div class="flex-1">
