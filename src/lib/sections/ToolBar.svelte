@@ -2,6 +2,7 @@
   import currentAdventure from "$lib/utils/journey";
   import Button from "$lib/elements/buttons/Button.svelte";
   import SettingsModal from "$lib/elements/modals/SettingsModal.svelte";
+  import AboutModal from "$lib/elements/modals/AboutModal.svelte";
   import NewJourneyModal from "$lib/elements/modals/NewJourneyModal.svelte";
 
   let optionsMenuState = false;
@@ -12,6 +13,11 @@
   let restartMenuState = false;
   function toggleRestartPrompt() {
     restartMenuState = !restartMenuState;
+  }
+
+  let aboutMenuState = false;
+  function toggleAbout() {
+    aboutMenuState = !aboutMenuState;
   }
 </script>
 
@@ -24,6 +30,13 @@
       </div>
     </Button>
   {/if}
+
+  <Button action={toggleAbout}>
+    <div class="btn-content" title="View settings">
+      <strong>❔</strong>
+      <span>About</span>
+    </div>
+  </Button>
 
   <Button action={toggleOptions}>
     <div class="btn-content" title="View settings">
@@ -41,6 +54,11 @@
 <!-- restart dialog -->
 {#if restartMenuState}
   <NewJourneyModal callback={toggleRestartPrompt} />
+{/if}
+
+<!-- about dialog -->
+{#if aboutMenuState}
+  <AboutModal callback={toggleAbout} />
 {/if}
 
 <style lang="postcss">
