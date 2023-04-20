@@ -25,7 +25,7 @@
     @apply m-auto text-center;
   }
   .buttons {
-    @apply flex flex-row justify-around;
+    @apply flex flex-row justify-around mt-8;
   }
   button {
     @apply rounded w-1/3 h-12 border border-gray-500 cursor-pointer transition-all;

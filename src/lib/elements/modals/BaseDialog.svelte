@@ -51,7 +51,7 @@
 
 <style lang="postcss">
   dialog {
-    @apply p-4 w-full h-full md:w-1/2 md:h-3/4 md:rounded-xl border-2 border-amber-500;
+    @apply md:rounded-xl border-2 border-amber-500;
     @apply bg-zinc-100 text-zinc-800;
     @apply dark:bg-zinc-800 dark:text-zinc-100;
   }
@@ -62,7 +62,7 @@
   }
 
   form {
-    @apply h-full w-full flex flex-col flex-nowrap;
+    @apply h-full w-full m-0 flex flex-col flex-nowrap;
   }
 
   header {

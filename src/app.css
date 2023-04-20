@@ -43,6 +43,19 @@
     @apply dark:prose-invert;
   }
 
+  /* dialogs - restrict size on larger screens */
+  dialog {
+    @apply w-full h-full p-4;
+  }
+  @media screen(md) {
+    dialog {
+      width: fit-content;
+      height: fit-content;
+      max-width: 60%;
+      max-height: 75%;
+    }
+  }
+
   /* all labels are meant to be clickable */
   label {
     @apply cursor-pointer;
