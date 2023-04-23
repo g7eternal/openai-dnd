@@ -62,6 +62,32 @@
 
     <h2 class="text-lg font-bold">Other settings</h2>
 
+    <div class="input-group input-col">
+      <label
+        for="option_gptTemp"
+        class="self-start"
+        use:tippy={{
+          placement: "top-start",
+          content:
+            "Higher values might yield more creative responses by deviating from requested prompt",
+        }}>🌡️ Model temperature</label
+      >
+      <div class="flex">
+        <input
+          id="option_gptTemp"
+          class="flex-1 saturate-0"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          bind:value={$settings.GPTTemperature}
+        />
+        <span class="ms-2 opacity-50">
+          {$settings.GPTTemperature}%
+        </span>
+      </div>
+    </div>
+
     <div class="input-group input-row">
       <span
         use:tippy={{
@@ -76,8 +102,8 @@
           bind:checked={$settings.darkMode}
           on:change={() => toggleDarkMode($settings.darkMode)}
         />
-        <label for="option_darkMode">💡 Dark mode</label></span
-      >
+        <label for="option_darkMode">💡 Dark mode</label>
+      </span>
     </div>
 
     <div class="input-group input-row">

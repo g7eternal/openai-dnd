@@ -10,6 +10,7 @@ const defaultSettings = {
   appendLogs: true,
   channel: "",
   GPTKey: "",
+  GPTTemperature: 69, // nice
   lastVisit: new Date(0),
 };
 

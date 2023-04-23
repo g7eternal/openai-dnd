@@ -6,11 +6,12 @@ const configSkeleton = {
 };
 
 const GPT_MODEL = "gpt-3.5-turbo";
-const GPT_TEMPERATURE = 0.7;
 
 let apiKey = "";
+let temperature = 70;
 settings.subscribe((s) => {
   apiKey = s.GPTKey;
+  temperature = s.GPTTemperature / 100;
 });
 
 let openai = null;
@@ -22,7 +23,7 @@ export async function getNextChat(messages) {
     // send request:
     const conversation = await openai.createChatCompletion({
       model: GPT_MODEL,
-      temperature: GPT_TEMPERATURE,
+      temperature: temperature,
       messages: messages.map((msg) => msg.getContent()),
       /* 
         openai-node does not support streaming yet
