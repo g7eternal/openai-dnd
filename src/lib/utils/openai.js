@@ -19,16 +19,11 @@ export async function getNextChat(messages) {
   try {
     if (!openai) throw new Error("API is not initialized properly");
 
-    // attempt to reduce token usage:
-    const lastMessage = messages[messages.length - 1]; // latest request
-    const filteredMessages = messages.filter((m) => m.role !== "user");
-    filteredMessages.push(lastMessage);
-
     // send request:
     const conversation = await openai.createChatCompletion({
       model: GPT_MODEL,
       temperature: GPT_TEMPERATURE,
-      messages: filteredMessages,
+      messages: messages.map((msg) => msg.getContent()),
       /* 
         openai-node does not support streaming yet
         https://github.com/openai/openai-node#streaming-completions

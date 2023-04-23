@@ -41,4 +41,8 @@ export default class RichMessage {
     this.isError = flag;
     return this;
   }
+
+  toString() {
+    return `${this.sender}: ${this.text}`;
+  }
 }

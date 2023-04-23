@@ -73,14 +73,6 @@ export default class Adventure {
     return this;
   }
 
-  getParsedLogs() {
-    const logChunk = logs.splice(0, logs.length).map((entry) => {
-      return `${entry.sender}: ${entry.text}`;
-    });
-
-    return logChunk;
-  }
-
   async requestGeneration() {
     try {
       const data = await getNextChat(this.history);
@@ -134,16 +126,10 @@ export default class Adventure {
     convoMessage.setAuthor("user");
     this.conversation.push(convoMessage);
 
-    const elements = [
-      gptPrompts.journey.starter,
-      "",
-      gptPrompts.journey.starter2,
-      "",
-      gptPrompts.system.logsIntro,
-      "",
-    ].concat(this.getParsedLogs()); // grabs all messages
+    const elements = [gptPrompts.journey.starter, "", gptPrompts.journey.starter2];
 
     const msg = new GPTMessage(elements.join("\n"));
+    msg.setChatLogs(logs.splice(0, logs.length));
     this.history.push(msg);
     this.requested = true;
     this.triggerUpdate();
@@ -161,13 +147,8 @@ export default class Adventure {
     this.requested = true;
     this.triggerUpdate();
 
-    let elements = [text, ""];
-    if (withLogs) {
-      elements.push(gptPrompts.system.logsIntro + "\n");
-      elements = elements.concat(this.getParsedLogs());
-    }
-
-    const msg = new GPTMessage(elements.join("\n"));
+    const msg = new GPTMessage(text);
+    if (withLogs) msg.setChatLogs(logs.splice(0, logs.length));
     this.history.push(msg);
 
     await this.requestGeneration();
